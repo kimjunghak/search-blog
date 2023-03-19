@@ -49,7 +49,7 @@ Host: localhost:8080
 
 - Request
 ```http request
-GET http://localhost:8080/search/blog?url=https://yangbongsoo.tistory.com&keyword=커스텀
+GET http://localhost:8080/search/blog?url=https://yangbongsoo.tistory.com
 Accept: application/json
 ```
 
@@ -61,36 +61,31 @@ Accept: application/json
   "data": {
     "content": [
       {
-        "title": "json error stack trace print 여부 <b>커스텀</b> 프로퍼티",
-        "contents": "원하는 <b>커스텀</b> 프로퍼티를 추가한다. 보통 deploy phase 에 따라 다르게 설정된다. response: print-stack-trace: true 다음으로 /resources/META-INF/spring-configuration-metadata.json 파일에 프로퍼티에 대한 메타데이터를 추가한다. { &#34;groups&#34;: [ { &#34;name&#34;: &#34;response&#34;, &#34;type&#34;: &#34;com.toy.config...",
+        "title": "json error stack trace print 여부 커스텀 프로퍼티",
+        "contents": "Status.BAD_REQUEST.getReasonPhrase()) .withStatus(Status.BAD_REQUEST) .withDetail(&#34;wrong request param&#34;) .with(&#34;name&#34;, &#34;ybs&#34;) .withType(URI.create(&#34;<b>https://yangbongsoo.tistory.com</b>&#34;)); return create(ex, builder.build(), request); } } cf) 예외가 발생했을 때 response body는 아래와 같다. { &#34;type...",
         "url": "http://yangbongsoo.tistory.com/63",
+        "blogname": "나만의 인덱스"
+      },
+      {
+        "title": "WebClient 사용할때 주의 (1편)",
+        "contents": "미리 webClient 를 생성해놓고 필요할 때마다 재사용을 할 때 this.webClient = WebClient.builder() .clientConnector(connector) .baseUrl(&#34;<b>https://yangbongsoo.tistory.com</b>&#34;) .build() .post(); 사용하고자 하는 쪽에서 아래와 같이 header 메서드를 쓴다면 reqest header 가 계속 누적되어 append 되는 문제가 발생...",
+        "url": "http://yangbongsoo.tistory.com/9",
         "blogname": "나만의 인덱스"
       }
     ],
-    "pageable": {
-      "sort": {
-        "empty": false,
-        "sorted": true,
-        "unsorted": false
-      },
-      "offset": 10,
-      "pageNumber": 1,
-      "pageSize": 10,
-      "paged": true,
-      "unpaged": false
-    },
+    "pageable": "INSTANCE",
     "last": true,
-    "totalPages": 2,
-    "totalElements": 11,
-    "first": false,
-    "size": 10,
-    "number": 1,
+    "totalPages": 1,
+    "totalElements": 2,
+    "first": true,
+    "size": 2,
+    "number": 0,
     "sort": {
-      "empty": false,
-      "sorted": true,
-      "unsorted": false
+      "empty": true,
+      "unsorted": true,
+      "sorted": false
     },
-    "numberOfElements": 1,
+    "numberOfElements": 2,
     "empty": false
   }
 }

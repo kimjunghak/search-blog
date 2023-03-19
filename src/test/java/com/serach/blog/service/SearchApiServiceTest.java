@@ -1,12 +1,12 @@
 package com.serach.blog.service;
 
 import com.serach.blog.api.properties.ApiProperties;
+import com.serach.blog.api.result.Document;
+import com.serach.blog.api.result.KakaoApiResult;
+import com.serach.blog.api.result.Meta;
 import com.serach.blog.api.service.ApiService;
 import com.serach.blog.model.entity.PopularKeyword;
 import com.serach.blog.model.params.RequestParams;
-import com.serach.blog.model.result.Document;
-import com.serach.blog.model.result.KakaoApiResult;
-import com.serach.blog.model.result.Meta;
 import com.serach.blog.model.result.RestResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,10 +32,13 @@ class SearchApiServiceTest {
     @Mock
     ApiService apiService;
 
+    @Mock
+    MqService mqService;
+
     @BeforeEach
     void setup() {
         ApiProperties apiProperties = new ApiProperties();
-        searchApiService = new SearchApiService(popularKeywordService, apiService, apiProperties);
+        searchApiService = new SearchApiService(popularKeywordService, apiService, mqService, apiProperties);
     }
 
     @Test

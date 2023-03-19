@@ -10,6 +10,6 @@ public enum SortEnum {
         Arrays.stream(SortEnum.values())
                 .filter(sortEnum -> sortEnum.name().equals(sort))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("not support sort string"));
+                .orElseThrow(() -> new IllegalArgumentException("not support sort"));
     }
 }

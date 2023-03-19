@@ -1,4 +1,4 @@
-package com.serach.blog.model.result;
+package com.serach.blog.api.result;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

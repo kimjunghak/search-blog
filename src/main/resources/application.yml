@@ -16,3 +16,12 @@ api:
   kakao-url: 'https://dapi.kakao.com/v2/search/blog'
   kakao-token: ''
   naver-url: 'https://openapi.naver.com/v1/search/blog.json'
+
+mq:
+  host: localhost
+  port: 5672
+  virtual-host: /
+  username: guest
+  password: guest
+  exchange: blog
+  queue-keyword: keyword

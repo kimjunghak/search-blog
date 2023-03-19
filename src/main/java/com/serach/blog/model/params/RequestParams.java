@@ -25,5 +25,4 @@ public class RequestParams {
     @Range(min = 1, max = 50, message = "1 <= size <= 50")
     private int size = 10;
 
-
 }
