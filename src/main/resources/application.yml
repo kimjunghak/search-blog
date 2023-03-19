@@ -9,6 +9,8 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     open-in-view: false
+    hibernate:
+      ddl-auto: create
 
 api:
   kakao-url: 'https://dapi.kakao.com/v2/search/blog'
