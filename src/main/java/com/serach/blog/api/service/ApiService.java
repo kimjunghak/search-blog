@@ -31,13 +31,9 @@ public class ApiService {
                     .header("Authorization", "KakaoAK " + token);
         }
 
-        T responseBody = webclient
+        return webclient
                 .retrieve()
                 .bodyToMono(clazz)
                 .block();
-
-        log.info("responseBody: {}", responseBody);
-
-        return responseBody;
     }
 }
