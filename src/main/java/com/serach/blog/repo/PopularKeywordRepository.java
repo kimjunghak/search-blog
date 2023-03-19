@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface PopularKeywordRepository extends BaseRepository<PopularKeyword, Long> {
 
-    List<PopularKeyword> findTop10By();
+    List<PopularKeyword> findTop10ByOrderByCountDesc();
 
     Optional<PopularKeyword> findByKeyword(String keyword);
 }

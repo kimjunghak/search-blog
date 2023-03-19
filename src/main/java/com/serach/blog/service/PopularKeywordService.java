@@ -27,6 +27,6 @@ public class PopularKeywordService {
     }
 
     public List<PopularKeyword> top10Keyword() {
-        return popularKeywordRepository.findTop10By();
+        return popularKeywordRepository.findTop10ByOrderByCountDesc();
     }
 }
