@@ -6,12 +6,11 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "api")
-public class ApiProperties {
+@ConfigurationProperties(prefix = "api.kakao")
+public class KakaoProperties {
 
-    private String kakaoUrl;
+    private String blogUrl;
 
-    private String kakaoToken;
-
-    private String naverUrl;
+    private String token;
 }
+

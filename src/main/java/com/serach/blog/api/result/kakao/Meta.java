@@ -1,4 +1,4 @@
-package com.serach.blog.api.result;
+package com.serach.blog.api.result.kakao;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

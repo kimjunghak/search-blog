@@ -1,6 +1,6 @@
-## API 명세서
+# API 명세서
 
-#### 공통 Response
+### 공통 Response
 
 | Name    | Type    | Description        |    
 |---------|---------|--------------------|
@@ -9,18 +9,18 @@
 | message | String  | API 호출 실패했을 경우 메시지 |
 
 
-### 블로그 검색하기
+## 1. 블로그 검색하기
 
-#### 기본 정보
+### 기본 정보
 
 ```http request
 GET /search/blog
 Host: localhost:8080
 ```
 
-#### Request
+### Request
 
-##### Parameter
+#### Parameter
 
 | Name    | Type    | Description                                                | Require |
 |---------|---------|------------------------------------------------------------|---------|
@@ -31,9 +31,9 @@ Host: localhost:8080
 | size    | Integer | 한 페이지에 보여질 문서 수, 1~50 사이의 값, 기본 값 10                       | X       |
 
 
-#### Response
+### Response
 
-##### data
+#### data
 
 | Name             | Type   | Description    |
 |------------------|--------|----------------|
@@ -45,7 +45,7 @@ Host: localhost:8080
 | pageable         | Object | pagination 데이터 |
 
 
-##### ex
+#### ex
 
 - Request
 ```http request
@@ -64,13 +64,15 @@ Accept: application/json
         "title": "json error stack trace print 여부 커스텀 프로퍼티",
         "contents": "Status.BAD_REQUEST.getReasonPhrase()) .withStatus(Status.BAD_REQUEST) .withDetail(&#34;wrong request param&#34;) .with(&#34;name&#34;, &#34;ybs&#34;) .withType(URI.create(&#34;<b>https://yangbongsoo.tistory.com</b>&#34;)); return create(ex, builder.build(), request); } } cf) 예외가 발생했을 때 response body는 아래와 같다. { &#34;type...",
         "url": "http://yangbongsoo.tistory.com/63",
-        "blogname": "나만의 인덱스"
+        "blogname": "나만의 인덱스",
+        "datetime": "2021-11-21T16:16:08.000+00:00"
       },
       {
         "title": "WebClient 사용할때 주의 (1편)",
         "contents": "미리 webClient 를 생성해놓고 필요할 때마다 재사용을 할 때 this.webClient = WebClient.builder() .clientConnector(connector) .baseUrl(&#34;<b>https://yangbongsoo.tistory.com</b>&#34;) .build() .post(); 사용하고자 하는 쪽에서 아래와 같이 header 메서드를 쓴다면 reqest header 가 계속 누적되어 append 되는 문제가 발생...",
         "url": "http://yangbongsoo.tistory.com/9",
-        "blogname": "나만의 인덱스"
+        "blogname": "나만의 인덱스",
+        "datetime": "2021-01-18T14:13:10.000+00:00"
       }
     ],
     "pageable": "INSTANCE",
@@ -82,8 +84,8 @@ Accept: application/json
     "number": 0,
     "sort": {
       "empty": true,
-      "unsorted": true,
-      "sorted": false
+      "sorted": false,
+      "unsorted": true
     },
     "numberOfElements": 2,
     "empty": false
@@ -91,30 +93,30 @@ Accept: application/json
 }
 ```
 
-### 인기 검색어 조회
+## 2. 인기 검색어 조회
 
-#### 기본 정보
+### 기본 정보
 
 ```http request
 GET /search/popular-keyword
 Host: localhost:8080
 ```
 
-#### Request
+### Request
 
-##### Parameter
+#### Parameter
 
 X
 
 
-#### Response
+### Response
 
 | Name    | Type    | Description |
 |---------|---------|-------------|
 | keyword | String  | 검색한 키워드     |
 | count   | Integer | 검색한 횟수      |
 
-#### ex
+### ex
 
 - Request
 ```http request

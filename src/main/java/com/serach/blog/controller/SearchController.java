@@ -23,6 +23,7 @@ public class SearchController {
 
     @GetMapping("/search/blog")
     public RestResult searchBlog(@ModelAttribute @Valid RequestParams params, Errors errors) {
+        // valid 검사
         if (errors.hasErrors()) {
             StringJoiner joiner = new StringJoiner(",");
             List<ObjectError> allErrors = errors.getAllErrors();

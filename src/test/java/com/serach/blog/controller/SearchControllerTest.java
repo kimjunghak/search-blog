@@ -79,7 +79,7 @@ class SearchControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        assertThat(contentAsString).contains("not support sort string");
+        assertThat(contentAsString).contains("not support sort");
     }
 
     @Test

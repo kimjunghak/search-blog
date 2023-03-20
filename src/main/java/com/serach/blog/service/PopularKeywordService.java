@@ -16,8 +16,6 @@ public class PopularKeywordService {
 
     private final PopularKeywordRepository popularKeywordRepository;
 
-    //todo mq 추가
-
     public void saveKeyword(PopularKeyword keyword) {
         popularKeywordRepository.save(keyword);
     }

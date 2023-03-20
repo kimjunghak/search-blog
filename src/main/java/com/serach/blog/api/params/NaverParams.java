@@ -1,7 +1,7 @@
 package com.serach.blog.api.params;
 
-
 import com.serach.blog.model.params.RequestParams;
+import com.serach.blog.model.params.SortEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +10,7 @@ import org.apache.logging.log4j.util.Strings;
 @Data
 @AllArgsConstructor
 @Builder
-public class KakaoParams implements ParamsInterface {
+public class NaverParams implements ParamsInterface {
 
     private String query;
 
@@ -20,17 +20,26 @@ public class KakaoParams implements ParamsInterface {
 
     private Integer size;
 
-    public static KakaoParams toKakaoParams(RequestParams params) {
+    public static NaverParams toNaverParams(RequestParams params) {
         String query = params.getUrl();
         String keyword = params.getKeyword();
         if (Strings.isNotEmpty(keyword)) {
             query = query.concat(" ").concat(keyword);
         }
-        return KakaoParams.builder()
+        return NaverParams.builder()
                 .query(query)
-                .sort(params.getSort())
+                .sort(changeNaverSort(params.getSort()))
                 .page(params.getPage())
                 .size(params.getSize())
                 .build();
+    }
+
+    private static String changeNaverSort(String sortParam) {
+        if (SortEnum.recency.name().equalsIgnoreCase(sortParam)) {
+            sortParam = SortEnum.sim.name();
+        } else {
+            sortParam = SortEnum.date.name();
+        }
+        return sortParam;
     }
 }

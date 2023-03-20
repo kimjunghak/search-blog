@@ -6,6 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.nio.charset.StandardCharsets;
@@ -17,22 +18,17 @@ public class ApiService {
 
     private final WebClient webClient;
 
-    public <T> T get(String token, String url, MultiValueMap<String, String> parameters, Class<T> clazz) {
-        WebClient.RequestHeadersSpec<?> webclient = webClient.get()
+    public <T> T get(String url, MultiValueMap<String, String> headers, MultiValueMap<String, String> parameters, Class<T> clazz) {
+        return webClient.get()
                 .uri(url, uriBuilder -> uriBuilder
                         .queryParams(parameters)
                         .build())
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.MULTIPART_FORM_DATA_VALUE)
+                .headers(httpHeaders -> httpHeaders.addAll(headers))
                 .accept(MediaType.APPLICATION_JSON)
-                .acceptCharset(StandardCharsets.UTF_8);
-
-        if (token != null && url.contains("kakao")) {
-            webclient
-                    .header("Authorization", "KakaoAK " + token);
-        }
-
-        return webclient
+                .acceptCharset(StandardCharsets.UTF_8)
                 .retrieve()
+                .onStatus(httpStatus -> httpStatus.is5xxServerError() || httpStatus.is4xxClientError(), ClientResponse::createException)
                 .bodyToMono(clazz)
                 .block();
     }
