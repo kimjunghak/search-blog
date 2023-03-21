@@ -15,7 +15,7 @@
 
 ```http request
 GET /search/blog
-Host: localhost:8080
+Host: {hostname}
 ```
 
 ### Request
@@ -49,7 +49,7 @@ Host: localhost:8080
 
 - Request
 ```http request
-GET http://localhost:8080/search/blog?url=https://yangbongsoo.tistory.com
+GET {hostname}/search/blog?url=https://yangbongsoo.tistory.com
 Accept: application/json
 ```
 
@@ -99,7 +99,7 @@ Accept: application/json
 
 ```http request
 GET /search/popular-keyword
-Host: localhost:8080
+Host: {hostname}
 ```
 
 ### Request
@@ -120,7 +120,7 @@ X
 
 - Request
 ```http request
-GET http://localhost:8080/search/popular-keyword
+GET {hostname}/search/popular-keyword
 Accept: application/json
 ```
 
