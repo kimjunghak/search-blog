@@ -6,6 +6,7 @@ import com.serach.blog.api.result.naver.Item;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -34,8 +35,12 @@ public class Document {
         document.setUrl(item.getLink());
         document.setBlogname(item.getBloggername());
         document.setContents(item.getDescription());
-        LocalDateTime localDateTime = LocalDateTime.from(item.getPostdate().atStartOfDay());
-        document.setDatetime(Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant()));
+
+        LocalDate postdate = item.getPostdate();
+        if (postdate != null) {
+            LocalDateTime localDateTime = LocalDateTime.from(postdate.atStartOfDay());
+            document.setDatetime(Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant()));
+        }
         return document;
     }
 }

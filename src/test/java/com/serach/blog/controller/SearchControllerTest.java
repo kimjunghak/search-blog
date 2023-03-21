@@ -31,7 +31,7 @@ class SearchControllerTest {
     @Test
     @DisplayName("url 없음")
     void url_is_null() throws Exception {
-        String contentAsString = mock.perform(MockMvcRequestBuilders.get("/search/blog"))
+        String contentAsString = mock.perform(MockMvcRequestBuilders.get("/v1/search/blog"))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andReturn()
                 .getResponse()
@@ -43,7 +43,7 @@ class SearchControllerTest {
     @Test
     @DisplayName("page 범위 초과")
     void page_out_of_range() throws Exception {
-        String contentAsString = mock.perform(MockMvcRequestBuilders.get("/search/blog")
+        String contentAsString = mock.perform(MockMvcRequestBuilders.get("/v1/search/blog")
                 .param("url", "https://yangbongsoo.tistory.com")
                 .param("page", "100"))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
@@ -57,7 +57,7 @@ class SearchControllerTest {
     @Test
     @DisplayName("size 범위 초과")
     void size_out_of_range() throws Exception {
-        String contentAsString = mock.perform(MockMvcRequestBuilders.get("/search/blog")
+        String contentAsString = mock.perform(MockMvcRequestBuilders.get("/v1/search/blog")
                         .param("url", "https://yangbongsoo.tistory.com")
                         .param("size", "100"))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
@@ -71,7 +71,7 @@ class SearchControllerTest {
     @Test
     @DisplayName("지원하지 않는 정렬")
     void not_support_sort() throws Exception {
-        String contentAsString = mock.perform(MockMvcRequestBuilders.get("/search/blog")
+        String contentAsString = mock.perform(MockMvcRequestBuilders.get("/v1/search/blog")
                         .param("url", "https://yangbongsoo.tistory.com")
                         .param("sort", "test"))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
@@ -88,7 +88,7 @@ class SearchControllerTest {
 
         given(searchApiService.blogSearch(any())).willReturn(RestResult.success(""));
 
-        mock.perform(MockMvcRequestBuilders.get("/search/blog")
+        mock.perform(MockMvcRequestBuilders.get("/v1/search/blog")
                         .param("url", ""))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
@@ -102,7 +102,7 @@ class SearchControllerTest {
 
         given(searchApiService.searchPopularKeyword()).willReturn(RestResult.success(popularKeywordResults));
 
-        mock.perform(MockMvcRequestBuilders.get("/search/popular-keyword"))
+        mock.perform(MockMvcRequestBuilders.get("/v1/search/popular-keyword"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }

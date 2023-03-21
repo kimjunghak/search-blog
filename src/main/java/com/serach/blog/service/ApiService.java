@@ -1,5 +1,6 @@
-package com.serach.blog.api.service;
+package com.serach.blog.service;
 
+import com.serach.blog.api.result.ApiResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -18,7 +19,7 @@ public class ApiService {
 
     private final WebClient webClient;
 
-    public <T> T get(String url, MultiValueMap<String, String> headers, MultiValueMap<String, String> parameters, Class<T> clazz) {
+    public <T extends ApiResult> T get(String url, MultiValueMap<String, String> headers, MultiValueMap<String, String> parameters, Class<T> clazz) {
         return webClient.get()
                 .uri(url, uriBuilder -> uriBuilder
                         .queryParams(parameters)
@@ -28,7 +29,7 @@ public class ApiService {
                 .accept(MediaType.APPLICATION_JSON)
                 .acceptCharset(StandardCharsets.UTF_8)
                 .retrieve()
-                .onStatus(httpStatus -> httpStatus.is5xxServerError() || httpStatus.is4xxClientError(), ClientResponse::createException)
+                .onStatus(httpStatus -> httpStatus.is4xxClientError() || httpStatus.is5xxServerError(), ClientResponse::createException)
                 .bodyToMono(clazz)
                 .block();
     }
