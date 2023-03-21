@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -45,7 +46,8 @@ public class NaverSearchService implements BlogSearch{
         for (Item item : items) {
             documents.add(toDocument(item));
         }
-        PageRequest pageRequest = PageRequest.of(naverApiResult.getStart(), naverApiResult.getDisplay());
+        //Spring 의 Page는 0부터 시작하기 떄문에 수정
+        PageRequest pageRequest = PageRequest.of(naverApiResult.getStart() - 1, naverApiResult.getDisplay(), Sort.by(params.getSort()));
         return new PageImpl<>(documents, pageRequest, naverApiResult.getTotal());
     }
 }

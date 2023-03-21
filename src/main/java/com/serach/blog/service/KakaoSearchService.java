@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -35,7 +36,8 @@ public class KakaoSearchService implements BlogSearch{
         KakaoApiResult kakaoApiResult = apiService.get(kakaoProperties.getBlogUrl(), kakaoHeaders, kakaoParameters, KakaoApiResult.class);
 
         Meta meta = kakaoApiResult.getMeta();
-        PageRequest pageRequest = PageRequest.of(params.getPage(), meta.getPageableCount());
+        //Spring 의 Page는 0부터 시작하기 떄문에 수정
+        PageRequest pageRequest = PageRequest.of(params.getPage() - 1, meta.getPageableCount(), Sort.by(params.getSort()));
         return new PageImpl<>(kakaoApiResult.getDocuments(), pageRequest, meta.getTotalCount());
     }
 }
