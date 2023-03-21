@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -17,11 +18,12 @@ import java.util.StringJoiner;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/v1/search")
 public class SearchController {
 
     private final SearchApiService searchApiService;
 
-    @GetMapping("/search/blog")
+    @GetMapping("/blog")
     public RestResult searchBlog(@ModelAttribute @Valid RequestParams params, Errors errors) {
         // valid 검사
         if (errors.hasErrors()) {
@@ -38,7 +40,7 @@ public class SearchController {
         return searchApiService.blogSearch(params);
     }
 
-    @GetMapping("/search/popular-keyword")
+    @GetMapping("/popular-keyword")
     public RestResult searchPopularKeyword() {
         return searchApiService.searchPopularKeyword();
     }

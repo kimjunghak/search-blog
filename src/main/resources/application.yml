@@ -15,11 +15,11 @@ spring:
 api:
   kakao:
     blog-url: 'https://dapi.kakao.com/v2/search/blog'
-    token: ''
+    token: '52f9fd99a0bf6b2192f9a9e3493cbc03'
   naver:
     blog-url: 'https://openapi.naver.com/v1/search/blog.json'
-    client-id: ''
-    client-secret: ''
+    client-id: 'l65pXETUhz_qQnG6Jyjg'
+    client-secret: 'PNy18BOwci'
 
 mq:
   host: localhost

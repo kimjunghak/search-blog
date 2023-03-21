@@ -1,9 +1,6 @@
 package com.serach.blog.service;
 
-import com.serach.blog.api.properties.KakaoProperties;
-import com.serach.blog.api.properties.NaverProperties;
-import com.serach.blog.api.result.kakao.KakaoApiResult;
-import com.serach.blog.api.service.ApiService;
+import com.serach.blog.api.result.kakao.Document;
 import com.serach.blog.model.entity.PopularKeyword;
 import com.serach.blog.model.params.RequestParams;
 import com.serach.blog.model.result.RestResult;
@@ -14,8 +11,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.PageImpl;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,20 +31,17 @@ class SearchApiServiceTest {
     private PopularKeywordService popularKeywordService;
 
     @Mock
-    private ApiService apiService;
-
-    @Mock
     private MqService mqService;
 
     @Mock
-    private KakaoProperties kakaoProperties;
+    private KakaoSearchService kakaoSearchService;
 
     @Mock
-    private NaverProperties naverProperties;
+    private NaverSearchService naverSearchService;
 
     @BeforeEach
     void setup() {
-        searchApiService = new SearchApiService(popularKeywordService, apiService, mqService, kakaoProperties, naverProperties);
+        searchApiService = new SearchApiService(popularKeywordService, mqService, kakaoSearchService, naverSearchService);
     }
 
     @Test
@@ -57,10 +52,8 @@ class SearchApiServiceTest {
         RequestParams requestParams = new RequestParams();
         requestParams.setUrl(url);
 
-        KakaoApiResult kakaoApiResult = new KakaoApiResult();
-        kakaoApiResult.setDocuments(new ArrayList<>());
-
-        given(apiService.get(any(), any(), any(), any())).willReturn(kakaoApiResult);
+        PageImpl<Document> documents = new PageImpl<>(Collections.singletonList(new Document()));
+        given(kakaoSearchService.search(any())).willReturn(documents);
 
         RestResult restResult = searchApiService.blogSearch(requestParams);
 
