@@ -14,7 +14,7 @@
 ### 기본 정보
 
 ```http request
-GET /search/blog
+GET /v1/search/blog
 Host: {hostname}
 ```
 
@@ -49,7 +49,7 @@ Host: {hostname}
 
 - Request
 ```http request
-GET {hostname}/search/blog?url=https://yangbongsoo.tistory.com
+GET {hostname}/v1/search/blog?url=https://yangbongsoo.tistory.com
 Accept: application/json
 ```
 
@@ -109,7 +109,7 @@ Accept: application/json
 ### 기본 정보
 
 ```http request
-GET /search/popular-keyword
+GET /v1/search/popular-keyword
 Host: {hostname}
 ```
 
@@ -131,7 +131,7 @@ X
 
 - Request
 ```http request
-GET {hostname}/search/popular-keyword
+GET {hostname}/v1/search/popular-keyword
 Accept: application/json
 ```
 
