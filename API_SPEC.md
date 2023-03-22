@@ -75,17 +75,28 @@ Accept: application/json
         "datetime": "2021-01-18T14:13:10.000+00:00"
       }
     ],
-    "pageable": "INSTANCE",
+    "pageable": {
+      "sort": {
+        "empty": false,
+        "unsorted": false,
+        "sorted": true
+      },
+      "offset": 0,
+      "pageNumber": 0,
+      "pageSize": 10,
+      "paged": true,
+      "unpaged": false
+    },
     "last": true,
     "totalPages": 1,
     "totalElements": 2,
     "first": true,
-    "size": 2,
+    "size": 10,
     "number": 0,
     "sort": {
-      "empty": true,
-      "sorted": false,
-      "unsorted": true
+      "empty": false,
+      "unsorted": false,
+      "sorted": true
     },
     "numberOfElements": 2,
     "empty": false
